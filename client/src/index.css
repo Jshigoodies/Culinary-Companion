@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black
 }
 
 code {
@@ -21,27 +22,19 @@ nav {
   padding: 0 20px;
 }
 
-.navLeft button {
+.navRight button {
   border: 7px bold black;
   background-color: white;
   font-size: 16px;
   border-radius: 4px;
   padding: 10px 40px;
+  margin: 5px;
 }
 
-.navLeft button:hover {
-  background-color: whitesmoke;
+.navRight button:hover {
+  background-color: lightblue;
 }
 
-.navLeft {
-  padding-left: 5px;
-  padding-right: 5px;
-}
 
-.navRight a {
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
-}
 
 

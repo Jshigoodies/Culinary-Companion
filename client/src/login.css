@@ -1,0 +1,54 @@
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+section .login {
+    position: absolute;
+    width: 400px;
+    background-color: #222;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+section .login .content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+section .login .content h1 {
+    font-size: 2em;
+    color: #0f0;
+    text-transform: uppercase;
+}
+
+section .login .content .form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+section .login .content .form .inputBx {
+    position: relative;
+    width: 100%;
+
+}
+
+section .login .content .form .inputBx input {
+    position: relative;
+    width: 100%;
+    background: #333;
+}
