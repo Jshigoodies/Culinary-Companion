@@ -10,13 +10,13 @@ function NavBar() {
         </div>
         <div className='navRight'>
             <Link to='/search'>
-            <button>Search</button>
+                <button>Search</button>
             </Link>
             <Link to='/signup'>
-            <button>SignUp</button>
+                <button>SignUp</button>
             </Link>
             <Link to='/login'>
-            <button>Login</button>
+                <button>Login</button>
             </Link>
         </div>
         </nav>
