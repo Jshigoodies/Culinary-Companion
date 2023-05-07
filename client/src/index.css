@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black
+  background-color: black;
+  overflow: hidden;
 }
 
 code {
@@ -13,13 +14,24 @@ code {
     monospace;
 }
 
+
 nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 20px;
+  z-index: 2000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
   background-color: #3C5A9C;
   padding: 0 20px;
+}
+
+.navRight {
+  margin-right: 50px;
 }
 
 .navRight button {
