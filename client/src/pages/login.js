@@ -1,7 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../login.css'
+import { useLocation } from 'react-router-dom';
 function Login() {
+
+    const location = useLocation();
+
+    useEffect(() => {
+        // Get the current URL path
+        const path = location.pathname;
+
+        // Select the HTML element that you want to modify
+        const container = document.querySelector('body');
+
+        // Set the overflow property based on the current path
+        if (path === '/search') {
+            container.style.overflow = 'auto';
+        } else if (path === '/login' || path === '/signup') {
+            container.style.overflow = 'hidden';
+        }
+    }, [location]);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
