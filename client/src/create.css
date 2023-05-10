@@ -1,0 +1,59 @@
+.createDiv {
+    width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 40px 120px rgba(69, 67, 186, 0.3);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.createDiv h1 {
+    font-size: 24px;
+    color: #3C5A9C;
+    margin-bottom: 20px;
+}
+
+.createDiv form {
+    width: 100%;
+}
+
+.createDiv form label {
+    display: block;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.createDiv form input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+.createDiv form button {
+    background-color: #3C5A9C;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.createDiv form button:hover {
+    background-color: #005f7f;
+}
