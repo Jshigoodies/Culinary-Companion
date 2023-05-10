@@ -9,6 +9,9 @@ function NavBar() {
             <a href='/'><p>LOGO GOES HERE</p></a>
         </div>
         <div className='navRight'>
+            <Link to='/create'>
+                <button>Create</button>
+            </Link>
             <Link to='/search'>
                 <button>Search</button>
             </Link>
