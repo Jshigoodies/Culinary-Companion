@@ -52,7 +52,33 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in to create a recipe!');
     },
+    updateRecipe: async (parent, { id, input }, context) => {
+      if (context.user) {
+        const recipe = await Recipe.findByIdAndUpdate(
+          { _id: id },
+          { ...input },
+          { new: true }
+        );
+        return recipe;
+      }
+      throw new AuthenticationError('You need to be logged in to update a recipe!');
+    },
+    deleteRecipe: async (parent, { id }, context) => {
+      if (context.user) {
+        const recipe = await Recipe.findOneAndDelete({
+          _id: id,
+          username: context.user.username,
+        })
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { recipes: recipe._id } },
+        );  
+        return recipe;
+        
+      }
+      throw new AuthenticationError('You need to be logged in to delete a recipe!');
   },
+},
 };
 
 
