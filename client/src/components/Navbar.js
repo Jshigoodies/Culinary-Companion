@@ -6,7 +6,10 @@ function NavBar() {
     <div className='navDiv'>
         <nav>
         <div className='navLeft'>
-            <a href='/'><p>LOGO GOES HERE</p></a>
+            <a href="/">
+                <img src="../assets/logo.png" alt="logo" />
+            </a>
+
         </div>
         <div className='navRight'>
             <Link to='/create'>
