@@ -2,8 +2,12 @@ import React, { useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../login.css'
 import { useLocation } from 'react-router-dom';
-function Signup() {
 
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
+
+function Signup() {
+    const [addUser, {error, data}] = useMutation(ADD_USER);
     const location = useLocation();
 
     useEffect(() => {
@@ -25,13 +29,30 @@ function Signup() {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // goes to search page after signing in
-        navigate('/search');
-        console.log(email);
-        console.log(password);
-        console.log("User login info ^^^");
+        // navigate('/search');
+        // console.log(email);
+        // console.log(password);
+        // console.log("User login info ^^^");
+
+        try {
+            const {data} = await addUser({
+                variables: {
+                    username: email,
+                    email,
+                    password
+                },
+            })
+            console.log(data);
+        }
+        catch (e)
+        {
+            console.log(e);
+        }
+
+
       };
 
 
