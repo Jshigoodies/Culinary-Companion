@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-const typeDefs = gql`
+const typeDefs = gql
   type User {
     _id: ID
     email: String
@@ -55,6 +55,6 @@ const typeDefs = gql`
     deleteRecipe(id: ID!): Recipe!
 
   }
-`;
+;
 
 module.exports = typeDefs;
