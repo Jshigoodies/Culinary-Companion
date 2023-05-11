@@ -19,10 +19,10 @@ const userSchema = new Schema({
     recipes: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Recipe'
-      }
-    ]
 
+        ref: 'Recipe',
+      },
+    ],
 },
 {
     toJSON: {
