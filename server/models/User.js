@@ -5,15 +5,8 @@ const userSchema = new Schema({
     email: {
       type: String,
       required: true,
-      unique: true,
-      validate: {
-        validator: function (email) {
-          // Email validation logic here
-          return /.+@.+\..+/.test(email);
-        },
-        message: 'Must use a valid email address',
-      },
-    },  
+      unique: true
+    },
     password: {
       type: String,
       required: true
@@ -22,7 +15,14 @@ const userSchema = new Schema({
       type: String,
       required: true,
       unique: true,
-    }
+    },
+    recipes: [
+      {
+        type: Schema.Types.ObjectId,
+
+        ref: 'Recipe',
+      },
+    ],
 },
 {
     toJSON: {

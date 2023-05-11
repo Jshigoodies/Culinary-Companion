@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const { Schema, model } = require('mongoose');
 const recipeSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -19,10 +19,6 @@ const recipeSchema = new mongoose.Schema({
   },
   ingredients: {
     type: [String],
-    required: true,
-  },
-  author: {
-    type: String,
     required: true,
   },
   createdAt: {
