@@ -1,75 +1,60 @@
+const { AuthenticationError } = require('apollo-server-express');
 const { User, Recipe } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .populate('recipes');
+
+        return userData;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+
+    recipes: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Recipe.find(params).sort({ createdAt: -1 });
+    },
+
     recipe: async (parent, { id }) => {
-      try {
-        const recipe = await Recipe.findById(id).populate('author');
-        return recipe;
-      } catch (err) {
-        throw new Error(err);
-      }
+      return Recipe.findOne({ _id: id });
     },
-    recipes: async () => {
-      try {
-        const recipes = await Recipe.find().populate('author');
-        return recipes;
-      } catch (err) {
-        throw new Error(err);
-      }
+
+    users: async () => {
+      return User.find().populate('recipes');
     },
+
     user: async (parent, { id }) => {
-      try {
-        const user = await User.findById(id).populate('recipes');
-        return user;
-      } catch (err) {
-        throw new Error(err);
-      }
+      return User.findOne({ _id: id }).populate('recipes');
     },
   },
+
   Mutation: {
-    addRecipe: async (parent, { input }, { userId }) => {
-      try {
-        const recipe = await Recipe.create({
-          ...input,
-          author: userId,
-        });
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+      return { token, user };
+    },
 
-        const user = await User.findByIdAndUpdate(
-          userId,
+    addRecipe: async (parent, args, context) => {
+      if (context.user) {
+        const recipe = await Recipe.create({ ...args, username: context.user.username });
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
           { $push: { recipes: recipe._id } },
-          { new: true },
+          { new: true }
         );
-
-        recipe.author = user;
-
         return recipe;
-      } catch (err) {
-        throw new Error(err);
       }
-    },
-  },
-  Recipe: {
-    author: async (parent) => {
-      try {
-        const user = await User.findById(parent.author);
-        return user;
-      } catch (err) {
-        throw new Error(err);
-      }
-    },
-  },
-  User: {
-    recipes: async (parent) => {
-      try {
-        const recipes = await Recipe.find({ author: parent.id });
-        return recipes;
-      } catch (err) {
-        throw new Error(err);
-      }
+      throw new AuthenticationError('You need to be logged in to create a recipe!');
     },
   },
 };
+
 
 module.exports = resolvers;
 // const { User, Recipe } = require('../models');

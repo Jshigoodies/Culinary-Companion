@@ -5,6 +5,7 @@ const typeDefs = gql`
     id: ID!
     email: String!
     username: String!
+    password: String!
     recipes: [Recipe!]!
   }
 
@@ -15,9 +16,13 @@ const typeDefs = gql`
     servings: Int!
     sourceUrl: String!
     ingredients: [String!]!
-    author: User!
     createdAt: String!
     updatedAt: String!
+  }
+
+  type Auth {
+    token: ID!
+    user: User
   }
 
   input RecipeInput {
@@ -29,7 +34,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    currentUser: User
+    me: User
     recipe(id: ID!): Recipe
     recipes: [Recipe!]!
     user(id: ID!): User
@@ -40,6 +45,7 @@ const typeDefs = gql`
     addRecipe(input: RecipeInput!): Recipe!
     updateRecipe(id: ID!, input: RecipeInput!): Recipe!
     deleteRecipe(id: ID!): Recipe!
+    addUser(email: String!, username: String!, password: String!): Auth
   }
 `;
 
