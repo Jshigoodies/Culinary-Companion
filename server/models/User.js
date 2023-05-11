@@ -16,7 +16,13 @@ const userSchema = new Schema({
       type: String,
       required: true,
       unique: true,
-    }
+    },
+    recipes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Recipe',
+      },
+    ],
 },
 {
     toJSON: {
