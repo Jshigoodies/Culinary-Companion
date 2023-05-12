@@ -1,0 +1,70 @@
+.homeDiv {
+    margin-top: 50px;
+    color: #f6f6f6;
+    animation: fadeIn 0.5s ease-in-out;
+    padding: 10px;
+    background-image: linear-gradient(to right, black, #1c2a48);
+    background-size: 200% auto;
+    animation-name: gradient-move;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes gradient-move {
+    0% {
+        background-position: 0%;
+    }
+    50% {
+        background-position: 100%;
+    }
+    100% {
+        background-position: 0%;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.homeDiv h1 {
+    color: #4d7ce3;
+}
+
+.homeDiv p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.homeDiv h2 {
+    color: #234aa6;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.homeDiv ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.homeDiv ul li {
+    margin-bottom: 5px;
+}
+
+.homeDiv ul ul {
+    list-style-type: circle;
+    margin-left: 20px;
+}
+
+.homeDiv ul ul li {
+    margin-bottom: 3px;
+}
+
+
+

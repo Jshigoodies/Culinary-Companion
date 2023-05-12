@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+//make sure to leave the <Link to='/> because it's the home page
+
 function NavBar() {
   return (
     <div className='navDiv'>
         <nav>
         <div className='navLeft'>
-            <Link to='/home'>
+            <Link to='/'>
                 <img width={200} height={50} src="logo.png" alt="logo" />
             </Link>
 
