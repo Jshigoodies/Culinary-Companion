@@ -22,4 +22,18 @@ export const ADD_USER = gql`
       }
     }
   }
+
+`;
+
+export const CREATE_RECIPE = gql`
+mutation addRecipe($title: String!, $image: String!, $servings: Int!, $sourceUrl: String!, $ingredients: [String!]!) {
+  addRecipe(title: $title, image: $image, servings: $servings, sourceUrl: $sourceUrl, ingredients: $ingredients) {
+    id
+    title
+    image
+    servings
+    sourceUrl
+    ingredients
+  }
+}
 `;
