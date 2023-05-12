@@ -32,10 +32,10 @@ function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // goes to search page after signing in
-        // navigate('/search');
-        // console.log(email);
-        // console.log(password);
-        // console.log("User login info ^^^");
+        navigate('/search');
+        console.log(email);
+        console.log(password);
+        console.log("User login info ^^^");
 
         try {
             const {data} = await addUser({
