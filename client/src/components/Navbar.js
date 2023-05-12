@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+//make sure to leave the <Link to='/> because it's the home page
+
 function NavBar() {
   return (
     <div className='navDiv'>
