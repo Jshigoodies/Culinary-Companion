@@ -7,7 +7,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
 function Signup() {
-    // const [addUser, {error, data}] = useMutation(ADD_USER);
+    const [addUser, {error, data}] = useMutation(ADD_USER);
     const location = useLocation();
 
     useEffect(() => {
@@ -37,20 +37,20 @@ function Signup() {
         console.log(password);
         console.log("User login info ^^^");
 
-        // try {
-        //     const {data} = await addUser({
-        //         variables: {
-        //             username: email,
-        //             email,
-        //             password
-        //         },
-        //     })
-        //     console.log(data);
-        // }
-        // catch (e)
-        // {
-        //     console.log(e);
-        // }
+        try {
+            const {data} = await addUser({
+                variables: {
+                    username: email,
+                    email,
+                    password
+                },
+            })
+            console.log(data);
+        }
+        catch (e)
+        {
+            console.log(e);
+        }
 
 
       };

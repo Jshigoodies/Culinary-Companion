@@ -14,6 +14,11 @@ function CreateRecipe() {
 
     const handleSubmit =  (e) => {
         e.preventDefault();
+        setTitle('');
+        setImage('');
+        setSourceUrl('');
+        setIngredients([]);
+
         // Do something with the submitted recipeData
         console.log("title: " + title);
         console.log("image: " + image);
@@ -83,7 +88,7 @@ function CreateRecipe() {
                     />
                 </label>
 
-                <button type="submit">Submit a Recipe!</button>
+                <button type="submit" >Submit a Recipe!</button>
             </form>
             
         </div>
