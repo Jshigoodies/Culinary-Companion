@@ -69,6 +69,10 @@ function Search() {
                         <img src={image} alt={title} />
                         <h4>{title}</h4>
                     </Link>
+                    <div className="buttons">
+                            <button className="view-more-button">View Recipe</button>
+                            <button className="favorite-button">Add to Favorites</button>
+                         </div>
                     </div>
                 ))}
                 </div>
