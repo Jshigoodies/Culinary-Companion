@@ -4,8 +4,8 @@ import '../index.css'
 function Home() {
 
     return (
-        <div>
-  <h1>Project Description</h1>
+        <div className="home-container">
+        <div className="content">  <h1>Project Description</h1>
   <p>This project is a web application built using various technologies and frameworks. It aims to provide a platform for users to explore and share culinary recipes and information.</p>
   
   <h2>Features</h2>
@@ -62,6 +62,7 @@ function Home() {
     <li>Jason Shi</li>
     <li>Dino Arslanovic</li>
   </ul>
+        </div>
         </div>
     );
 }

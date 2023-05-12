@@ -7,7 +7,7 @@ function NavBar() {
         <nav>
         <div className='navLeft'>
             <Link to='/'>
-                <img width={200} height={50} src="logo.png" alt="logo" />
+                <img width={50} height={50} src="logo.png" alt="logo" />
             </Link>
 
         </div>
@@ -23,6 +23,9 @@ function NavBar() {
             </Link>
             <Link to='/login'>
                 <button>Login</button>
+            </Link>
+            <Link to='/favorites'>
+                <button>Favorites</button>
             </Link>
         </div>
         </nav>

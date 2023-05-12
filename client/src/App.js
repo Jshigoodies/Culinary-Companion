@@ -6,6 +6,8 @@ import SearchPage from './pages/search';
 import SignUpPage from './pages/signup';
 import LoginPage from './pages/login';
 import CreateRecipe from './pages/createRecipe';
+import FavoritesPage from './pages/favorites';
+
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
@@ -23,6 +25,7 @@ function App() {
         <Route path='/search' element={<SearchPage />} />
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/favorites' element={<FavoritesPage />} />
 
         <Route path='/create' element={<CreateRecipe />} />
       </Routes>
