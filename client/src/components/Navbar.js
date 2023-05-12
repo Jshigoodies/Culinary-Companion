@@ -6,7 +6,7 @@ function NavBar() {
     <div className='navDiv'>
         <nav>
         <div className='navLeft'>
-            <Link to='/home'>
+            <Link to='/'>
                 <img width={200} height={50} src="logo.png" alt="logo" />
             </Link>
 
