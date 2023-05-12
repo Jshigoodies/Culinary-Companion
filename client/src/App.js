@@ -6,10 +6,16 @@ import SearchPage from './pages/search';
 import SignUpPage from './pages/signup';
 import LoginPage from './pages/login';
 import CreateRecipe from './pages/createRecipe';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
+const client = new ApolloClient({
+  uri: 'http://localhost:3001/graphql',
+  cache: new InMemoryCache()
+});
 
 function App() {
   return (
+    <ApolloProvider client={client}>
     <BrowserRouter>
       <NavBar />
       <Routes>
@@ -21,6 +27,8 @@ function App() {
         <Route path='/create' element={<CreateRecipe />} />
       </Routes>
     </BrowserRouter>
+    </ApolloProvider>
+    
   );
 }
 

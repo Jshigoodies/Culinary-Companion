@@ -25,7 +25,7 @@ function Search() {
 
 
     const [query, setQuery] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
+    // const [searchResults, setSearchResults] = useState([]);
 
     const handleSearch = (event) => {
         event.preventDefault();
