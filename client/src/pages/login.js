@@ -1,40 +1,26 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../login.css'
-import { useLocation } from 'react-router-dom';
+import AuthService from '../utils/auth'; // Update the path to your AuthService
+
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-    const location = useLocation();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    useEffect(() => {
-        // Get the current URL path
-        const path = location.pathname;
+    try {
+      // Call the login method from AuthService
+      await AuthService.login(email, password);
+      navigate('/search'); // Redirect to the desired page after successful login
+    } catch (error) {
+      // Handle login errors, such as displaying an error message
+      console.log('Login failed:', error);
+    }
+  };
 
-        // Select the HTML element that you want to modify
-        const container = document.querySelector('body');
-
-        // Set the overflow property based on the current path
-        if (path === '/search') {
-            container.style.overflow = 'auto';
-        } else if (path === '/login' || path === '/signup') {
-            container.style.overflow = 'hidden';
-        }
-    }, [location]);
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // goes to search page after logging in
-        navigate('/search');
-        console.log(email);
-        console.log(password);
-        console.log("User login info ^^^");
-      };
-
-    return (
+      return (
         <section>
             <span></span>
             <span></span>

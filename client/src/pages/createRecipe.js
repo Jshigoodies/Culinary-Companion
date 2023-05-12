@@ -1,21 +1,51 @@
 import React, { useState} from 'react';
 import '../create.css';
+import { CREATE_RECIPE } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
 
 function CreateRecipe() {
+
+    const [createRecipe, {error, data}] = useMutation(CREATE_RECIPE);
 
     const [title, setTitle] = useState('');
     const [image, setImage] = useState('');
     const [sourceUrl, setSourceUrl] = useState('');
     const [ingredients, setIngredients] = useState([]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit =  (e) => {
         e.preventDefault();
+        setTitle('');
+        setImage('');
+        setSourceUrl('');
+        setIngredients([]);
+
         // Do something with the submitted recipeData
         console.log("title: " + title);
         console.log("image: " + image);
         console.log("sourceUrl: " + sourceUrl);
         console.log("ingredients: " + ingredients);
+
+        try {
+            const {data} =  createRecipe({
+                variables: {
+                    title,
+                    image,
+                    servings: 0,
+                    sourceUrl,
+                    ingredients
+                },
+            })
+            console.log(data);
+                }
+        catch (e)
+        {
+            console.log(e);
+        }
     };
+
+            
+
+    
 
 
 
@@ -58,7 +88,7 @@ function CreateRecipe() {
                     />
                 </label>
 
-                <button type="submit">Submit a Recipe!</button>
+                <button type="submit" >Submit a Recipe!</button>
             </form>
             
         </div>
