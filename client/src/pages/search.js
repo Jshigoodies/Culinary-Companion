@@ -1,6 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import '../search.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
+// import { Route } from 'react-router-dom';
+
+
 function Search() {
 
     const location = useLocation();
@@ -39,6 +42,7 @@ function Search() {
                 setTimeout(() => {
                     console.log("Api call search results");
                     console.log(jsonData);
+                    setSearchResults(jsonData.results);
                 }, 1000) 
             }
             catch {
@@ -57,8 +61,21 @@ function Search() {
                 <input className='search-txt' type='text' placeholder='Start Searching for Recipies!' value={query} onChange={(e) => setQuery(e.target.value)}/>
                 <button className='search-btn' onClick={handleSearch}>Let's GO!</button>
             </div>
+            {searchResults.length > 0 && (
+                <div className='search-results'>
+                {searchResults.map(({ title, id, image }) => (
+                    <div key={id}>
+                    <Link to={`/recipe/${id}`}>
+                        <img src={image} alt={title} />
+                        <h4>{title}</h4>
+                    </Link>
+                    </div>
+                ))}
+                </div>
+            )}
         </div>
     );
 }
+
 
 export default Search;
