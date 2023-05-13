@@ -10,6 +10,8 @@ import FavoritesPage from './pages/favorites';
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
+
+
 const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql',
   cache: new InMemoryCache()
@@ -26,6 +28,7 @@ function App() {
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/favorites' element={<FavoritesPage />} />
+
 
         <Route path='/create' element={<CreateRecipe />} />
       </Routes>
