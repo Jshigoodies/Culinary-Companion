@@ -3,11 +3,13 @@ import '../recipe.css';
 import { useLocation } from 'react-router-dom';
 import '../search.css';
 
+
 function Recipe() {
   const [searchTerm, setSearchTerm] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [recipe, setRecipe] = useState(null);
-  const API_KEY = '4d89654f5ccf42d29ebec31b5712545b';
+
+  const API_KEY = '4a61076911b94711a2a8d40b91cb7bb4';
   const API_BASE_URL = 'https://api.spoonacular.com/recipes';
 
 
@@ -38,8 +40,8 @@ function Recipe() {
     }
   }, [searchTerm]);
 
+      // Fetch details for a single recipe
   function handleRecipeClick(id) {
-    // Fetch details for a single recipe
     fetch(`${API_BASE_URL}/${id}/information?apiKey=${API_KEY}`)
       .then((response) => response.json())
       .then((data) => setRecipe(data))
@@ -49,6 +51,10 @@ function Recipe() {
   function removeHtmlTags(string) {
     // Remove any HTML tags from a string
     return string.replace(/(<([^>]+)>)/gi, '');
+  }
+
+  async function handleAddToFavorites() {
+
   }
 
   return (
@@ -75,6 +81,7 @@ function Recipe() {
           </ul>
           <h3>Instructions</h3>
           <div dangerouslySetInnerHTML={{ __html: recipe.instructions }}></div>
+          <button onClick={handleAddToFavorites}> Add to Favorites! </button>
         </div>
       )}
     </div>
