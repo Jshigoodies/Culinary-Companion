@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
+import { LOGIN_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
@@ -13,6 +14,7 @@ function Signup() {
     const isLoggedIn = Auth.loggedIn();
 
     const [addUser, {error, data}] = useMutation(ADD_USER);
+    const [login, {errors, datas}] = useMutation(LOGIN_USER);
     const location = useLocation();
 
     useEffect(() => {
@@ -38,19 +40,28 @@ function Signup() {
         e.preventDefault();
         // goes to search page after signing in
         navigate('/search');
-        console.log(email);
-        console.log(password);
-        console.log("User login info ^^^");
-
+        // console.log(email);
+        // console.log(password);
+        // console.log("User login info ^^^");
+        localStorage.setItem('email', email);
         try {
-            const {data} = await addUser({
+            const username = email;
+            await addUser({
                 variables: {
-                    username: email,
+                    username,
                     email,
                     password
                 },
             })
-            console.log(data);
+
+            const { data } = await login({
+                variables: { email, password, username }
+              });
+          
+              const token = data.login.token;
+              Auth.login(token);
+
+            //console.log(data);
         }
         catch (e)
         {

@@ -54,7 +54,7 @@ function Recipe() {
   }
 
   async function handleAddToFavorites() {
-
+    //console.log(recipe);
   }
 
   return (

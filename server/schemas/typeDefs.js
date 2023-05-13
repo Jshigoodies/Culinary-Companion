@@ -7,6 +7,7 @@ type User {
     email: String
     password: String
     username: String
+    recipes: [Recipe] # Add the recipes field to the User type
   }
 
   type Recipe {

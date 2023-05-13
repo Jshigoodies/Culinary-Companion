@@ -16,10 +16,6 @@ function CreateRecipe() {
 
     const handleSubmit =  (e) => {
         e.preventDefault();
-        setTitle('');
-        setImage('');
-        setSourceUrl('');
-        setIngredients([]);
 
         // Do something with the submitted recipeData
         console.log("title: " + title);
@@ -43,6 +39,11 @@ function CreateRecipe() {
         {
             console.log(e);
         }
+
+        setTitle('');
+        setImage('');
+        setSourceUrl('');
+        setIngredients([]);
     };
 
             

@@ -35,7 +35,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    localStorage.setItem('email', email);
     try {
         // Set the username value to be the same as the email value
         const username = email;

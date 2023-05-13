@@ -10,6 +10,7 @@ function NavBar() {
     const handleLogout = () => {
         // Call the logout function from the Auth service
         Auth.logout();
+        localStorage.removeItem('email');
       };
 
   return (
