@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     animation: fadeIn 0.5s ease-in-out;
+    flex-direction: column;
 }
 
 @keyframes fadeIn {
@@ -59,4 +60,21 @@
 
 .search-btn:hover {
     background-color: #005f7f;
+}
+
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 150px;
+}
+
+.search-results div {
+  text-align: center;
+}
+
+.search-results img {
+  max-width: 100%;
+  height: auto;
 }

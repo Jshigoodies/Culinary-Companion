@@ -1,0 +1,15 @@
+
+.fav-container {
+    margin-top: 25px;
+    height: 100vh; /* Set the height to fill the viewport */
+    overflow-y: auto; /* Enable vertical scrolling if necessary */
+  }
+  
+  .content {
+    padding: 20px; /* Add padding to create space between the content and the container */
+    color: aqua;
+  }
+  
+  
+  
+  
