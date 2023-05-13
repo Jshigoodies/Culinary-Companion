@@ -8,6 +8,8 @@ import LoginPage from './pages/login';
 import CreateRecipe from './pages/createRecipe';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
+
+
 const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql',
   cache: new InMemoryCache()
@@ -23,6 +25,7 @@ function App() {
         <Route path='/search' element={<SearchPage />} />
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/login' element={<LoginPage />} />
+
 
         <Route path='/create' element={<CreateRecipe />} />
       </Routes>

@@ -1,85 +1,84 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import '../recipe.css';
+import { useLocation } from 'react-router-dom';
 import '../search.css';
-import { useLocation, Link } from 'react-router-dom';
-// import { Route } from 'react-router-dom';
+
+function Recipe() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [recipes, setRecipes] = useState([]);
+  const [recipe, setRecipe] = useState(null);
+  const API_KEY = '4d89654f5ccf42d29ebec31b5712545b';
+  const API_BASE_URL = 'https://api.spoonacular.com/recipes';
 
 
-function Search() {
+  const location = useLocation();
 
-    const location = useLocation();
+  useEffect(() => {
+      // Get the current URL path
+      const path = location.pathname;
 
-    useEffect(() => {
-        // Get the current URL path
-        const path = location.pathname;
+      // Select the HTML element that you want to modify
+      const container = document.querySelector('body');
 
-        // Select the HTML element that you want to modify
-        const container = document.querySelector('body');
+      // Set the overflow property based on the current path
+      if (path === '/search') {
+          container.style.overflow = 'auto';
+      } else if (path === '/login' || path === '/signup') {
+          container.style.overflow = 'hidden';
+      }
+  }, [location]);
 
-        // Set the overflow property based on the current path
-        if (path === '/search') {
-            container.style.overflow = 'auto';
-        } else if (path === '/login' || path === '/signup') {
-            container.style.overflow = 'hidden';
-        }
-    }, [location]);
-
-
-    const [query, setQuery] = useState('');
-    // const [searchResults, setSearchResults] = useState([]);
-
-    const handleSearch = (event) => {
-        event.preventDefault();
-        // Submit the search query
-        console.log(`Query is ${query}`);
-
-
-        //victor taught us this so many times
-        async function fetchData() {
-            try {
-                const response = await fetch("https://api.spoonacular.com/recipes/complexSearch?apiKey=4d89654f5ccf42d29ebec31b5712545b&query="+query);
-                const jsonData = await response.json();
-
-                setTimeout(() => {
-                    console.log("Api call search results");
-                    console.log(jsonData);
-                    setSearchResults(jsonData.results);
-                }, 1000) 
-            }
-            catch {
-                console.log("ERROR WITH SEARCHING FOR THE API");
-            }
-
-        }
-
-        fetchData();
-
+  useEffect(() => {
+    // Fetch recipes based on search term
+    if (searchTerm) {
+      fetch(`${API_BASE_URL}/complexSearch?apiKey=${API_KEY}&query=${searchTerm}`)
+        .then((response) => response.json())
+        .then((data) => setRecipes(data.results))
+        .catch((error) => console.log(error));
     }
+  }, [searchTerm]);
 
-    return (
-        <div className='containerDiv'>
-            <div className='box'>
-                <input className='search-txt' type='text' placeholder='Start Searching for Recipies!' value={query} onChange={(e) => setQuery(e.target.value)}/>
-                <button className='search-btn' onClick={handleSearch}>Let's GO!</button>
-            </div>
-            {searchResults.length > 0 && (
-                <div className='search-results'>
-                {searchResults.map(({ title, id, image }) => (
-                    <div key={id}>
-                    <Link to={`/recipe/${id}`}>
-                        <img src={image} alt={title} />
-                        <h4>{title}</h4>
-                    </Link>
-                    <div className="buttons">
-                            <button className="view-more-button">View Recipe</button>
-                            <button className="favorite-button">Add to Favorites</button>
-                         </div>
-                    </div>
-                ))}
-                </div>
-            )}
+  function handleRecipeClick(id) {
+    // Fetch details for a single recipe
+    fetch(`${API_BASE_URL}/${id}/information?apiKey=${API_KEY}`)
+      .then((response) => response.json())
+      .then((data) => setRecipe(data))
+      .catch((error) => console.log(error));
+  }
+
+  function removeHtmlTags(string) {
+    // Remove any HTML tags from a string
+    return string.replace(/(<([^>]+)>)/gi, '');
+  }
+
+  return (
+    <div className="Recipe">
+      <h1>Search for Recipes</h1>
+      <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+      <ul>
+        {recipes.map((recipe) => (
+          <li key={recipe.id}>
+            <button onClick={() => handleRecipeClick(recipe.id)}>{recipe.title}</button>
+          </li>
+        ))}
+      </ul>
+      {recipe && (
+        <div>
+          <h2>{recipe.title}</h2>
+          <img src={recipe.image} alt={recipe.title} />
+          <p>{removeHtmlTags(recipe.summary)}</p>
+          <h3>Ingredients</h3>
+          <ul>
+            {recipe.extendedIngredients.map((ingredient) => (
+              <li key={ingredient.id}>{ingredient.original}</li>
+            ))}
+          </ul>
+          <h3>Instructions</h3>
+          <div dangerouslySetInnerHTML={{ __html: recipe.instructions }}></div>
         </div>
-    );
+      )}
+    </div>
+  );
 }
 
-
-export default Search;
+export default Recipe;
