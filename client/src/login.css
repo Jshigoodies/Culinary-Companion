@@ -162,5 +162,10 @@ section .login .content .form {
     }
 }
 
+.content p {
+    color: red;
+    font-weight: 500;
+}
+
 
 
