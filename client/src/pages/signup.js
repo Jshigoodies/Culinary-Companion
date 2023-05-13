@@ -1,12 +1,17 @@
 import React, { useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../login.css'
+import '../login.css';
 import { useLocation } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
+import Auth from '../utils/auth';
+
 function Signup() {
+
+    const isLoggedIn = Auth.loggedIn();
+
     const [addUser, {error, data}] = useMutation(ADD_USER);
     const location = useLocation();
 
@@ -239,34 +244,43 @@ function Signup() {
             <span></span>
             <span></span>
             
-
-            <div className='login'>
-                <div className='content'>
-                    <h1>SignUp</h1>
-                    <form className='form' onSubmit={handleSubmit}>
-                        <div className='inputBx'>
-                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-                            <i>Username</i>
-                        </div>
-                        <div className='inputBx'>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-                            <i>Password</i>
-                        </div>
-                        <div className='inputBx'>
-                            <button type="submit">Login</button>
-                        </div>
-                    </form>
-
-                    <div className='links'>
-                        <p>
-                            Already have an account? <Link to="/login">Log in here.</Link>
-                        </p>
+            {isLoggedIn ? (
+                <div className='login'>
+                    <div className='content'>
+                        <h1>You are already logged in</h1>
                     </div>
-                        
-                    
-                    
                 </div>
-            </div>
+            ) : (
+                <div className='login'>
+                    <div className='content'>
+                        <h1>SignUp</h1>
+                        <form className='form' onSubmit={handleSubmit}>
+                            <div className='inputBx'>
+                                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                                <i>Username</i>
+                            </div>
+                            <div className='inputBx'>
+                                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                                <i>Password</i>
+                            </div>
+                            <div className='inputBx'>
+                                <button type="submit">Login</button>
+                            </div>
+                        </form>
+
+                        <div className='links'>
+                            <p>
+                                Already have an account? <Link to="/login">Log in here.</Link>
+                            </p>
+                        </div>
+                            
+                        
+                        
+                    </div>
+                </div>
+            )}
+
+            
         </section>
     );
 }

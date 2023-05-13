@@ -2,8 +2,10 @@ import React, { useState} from 'react';
 import '../create.css';
 import { CREATE_RECIPE } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
-
+import Auth from '../utils/auth';
 function CreateRecipe() {
+
+    const isLoggedIn = Auth.loggedIn();
 
     const [createRecipe, {error, data}] = useMutation(CREATE_RECIPE);
 
@@ -52,46 +54,56 @@ function CreateRecipe() {
 
 
     return (
-        <div className='createDiv'>
-            <h1>Create Recipe</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Title:
-                    <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Image URL:
-                    <input
-                    type="text"
-                    value={image}
-                    onChange={(e) => setImage(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Source URL:
-                    <input
-                    type="text"
-                    value={sourceUrl}
-                    onChange={(e) => setSourceUrl(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Ingredients (comma-separated):
-                    <input
-                    type="text"
-                    value={ingredients.join(',')}
-                    onChange={(e) => setIngredients(e.target.value.split(','))}
-                    />
-                </label>
-
-                <button type="submit" >Submit a Recipe!</button>
-            </form>
+        <div>
+            {isLoggedIn ? (
+                <div className='createDiv'>
+                    <h1>Create Recipe</h1>
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            Title:
+                            <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            Image URL:
+                            <input
+                            type="text"
+                            value={image}
+                            onChange={(e) => setImage(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            Source URL:
+                            <input
+                            type="text"
+                            value={sourceUrl}
+                            onChange={(e) => setSourceUrl(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            Ingredients (comma-separated):
+                            <input
+                            type="text"
+                            value={ingredients.join(',')}
+                            onChange={(e) => setIngredients(e.target.value.split(','))}
+                            />
+                        </label>
+        
+                        <button type="submit" >Submit a Recipe!</button>
+                    </form>
+                </div>
+            ) : (
+                <div className='createDiv'>
+                    <h1>You are not allowed to view this. Please Log in First!</h1>
+                </div>
+            )}
             
+                    
         </div>
+            
     );
 }
 
