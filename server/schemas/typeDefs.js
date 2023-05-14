@@ -44,6 +44,7 @@ type User {
       servings: Int!
       sourceUrl: String!
       ingredients: [String!]!
+      email: String!
     ): Recipe!
 
     updateRecipe(
