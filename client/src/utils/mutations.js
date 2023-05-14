@@ -36,3 +36,16 @@ mutation Mutation($title: String!, $image: String!, $servings: Int!, $sourceUrl:
   }
 }
 `;
+
+export const DELETE_RECIPE = gql`
+mutation Mutation($deleteRecipeId: ID!) {
+  deleteRecipe(id: $deleteRecipeId) {
+    id
+    ingredients
+    image
+    servings
+    sourceUrl
+    title
+  }
+}
+`;
