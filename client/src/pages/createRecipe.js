@@ -14,7 +14,7 @@ function CreateRecipe() {
     const [sourceUrl, setSourceUrl] = useState('');
     const [ingredients, setIngredients] = useState([]);
 
-    const handleSubmit =  (e) => {
+    const handleSubmit =  async (e) => {
         e.preventDefault();
         setTitle('');
         setImage('');
@@ -22,11 +22,12 @@ function CreateRecipe() {
         setIngredients([]);
 
         // Do something with the submitted recipeData
-        console.log("title: " + title);
-        console.log("image: " + image);
-        console.log("sourceUrl: " + sourceUrl);
-        console.log("ingredients: " + ingredients);
-
+        // console.log("title: " + title);
+        // console.log("image: " + image);
+        // console.log("sourceUrl: " + sourceUrl);
+        // console.log("ingredients: " + ingredients);
+        const email = localStorage.getItem('email');
+        console.log("email ehre: " + email);
         try {
             const {data} =  createRecipe({
                 variables: {
@@ -34,10 +35,10 @@ function CreateRecipe() {
                     image,
                     servings: 0,
                     sourceUrl,
-                    ingredients
+                    ingredients,
+                    email,
                 },
             })
-            console.log(data);
                 }
         catch (e)
         {

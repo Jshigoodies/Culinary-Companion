@@ -5,10 +5,10 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find({});
+      return User.find({}).populate('recipies');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }); //.populate later for recipies
+      return User.findOne({ username }).populate('recipies'); //.populate later for recipies
     },
     recipe: async (parent, { id }) => {
       try {
@@ -58,10 +58,24 @@ const resolvers = {
       return { token, user };
     },
 
-    addRecipe: async (parent, { title, image, servings, sourceUrl, ingredients }) => {
+    addRecipe: async (parent, { title, image, servings, sourceUrl, ingredients, email }) => {
       try {
         const recipe = await Recipe.create({ title, image, servings, sourceUrl, ingredients });
-        return recipe;
+
+        const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      // Add the recipe to the user's recipes array
+      user.recipes.push(recipe);
+
+      // Save the updated user
+      await user.save();
+
+      return recipe;
+      
       } catch (error) {
         throw new Error('Failed to create recipe');
       }

@@ -9,6 +9,7 @@ function NavBar() {
 
     const handleLogout = () => {
         // Call the logout function from the Auth service
+        localStorage.removeItem('email');
         Auth.logout();
       };
 
@@ -29,6 +30,9 @@ function NavBar() {
                     </Link>
                     <Link to='/search'>
                         <button>Search</button>
+                    </Link>
+                    <Link to='/favorites'>
+                        <button>Favorites</button>
                     </Link>
                     <Link>
                         <button onClick={handleLogout}>Logout</button>
