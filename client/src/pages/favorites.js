@@ -1,9 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../favorites.css';
 import { useQuery } from '@apollo/client';
 import { GET_USER } from '../utils/queries';
+import { useLocation } from 'react-router-dom';
 
 function Favorites() {
+
+    const location = useLocation();
+
+    useEffect(() => {
+        // Get the current URL path
+        const path = location.pathname;
+
+        // Select the HTML element that you want to modify
+        const container = document.querySelector('body');
+
+        // Set the overflow property based on the current path
+        if (path === '/favorites') {
+            container.style.overflow = 'auto';
+        } else if (path === '/login' || path === '/signup') {
+            container.style.overflow = 'hidden';
+        }
+    }, [location]);
+
     const username = localStorage.getItem('email'); // Get the username from localStorage
 
   // Use the useQuery hook to fetch the user data

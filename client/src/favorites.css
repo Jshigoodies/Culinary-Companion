@@ -7,6 +7,18 @@
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .fav-div h1 {
@@ -32,8 +44,8 @@
 }
 
 .fav-div img {
-  max-width: 100%;
-  height: auto;
+  width: 200px; /* Set the desired width */
+  height: auto; /* Automatically adjust the height while maintaining aspect ratio */
   margin-top: 10px;
 }
 
