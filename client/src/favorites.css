@@ -1,15 +1,51 @@
+.fav-div {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
 
-.fav-container {
-    margin-top: 25px;
-    height: 100vh; /* Set the height to fill the viewport */
-    overflow-y: auto; /* Enable vertical scrolling if necessary */
-  }
-  
-  .content {
-    padding: 20px; /* Add padding to create space between the content and the container */
-    color: aqua;
-  }
-  
-  
-  
-  
+.fav-div h1 {
+  color: blue;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.fav-div h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.fav-div h3 {
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.fav-div h4 {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.fav-div img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.fav-div p {
+  margin-top: 5px;
+}
+
+.fav-div a {
+  color: white;
+}
+
+.fav-div ul {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
