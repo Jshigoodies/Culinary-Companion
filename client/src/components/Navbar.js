@@ -18,7 +18,7 @@ function NavBar() {
         <nav>
         <div className='navLeft'>
             <Link to='/'>
-                <img width={50} height={50} src="logo.png" alt="logo" />
+                <img width={220} height={50} src="culinarycomp.png" alt="logo" />
             </Link>
 
         </div>
