@@ -1,15 +1,89 @@
+.fav-div {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  animation: fadeIn 0.5s ease-in-out;
+}
 
-.fav-container {
-    margin-top: 25px;
-    height: 100vh; /* Set the height to fill the viewport */
-    overflow-y: auto; /* Enable vertical scrolling if necessary */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  .content {
-    padding: 20px; /* Add padding to create space between the content and the container */
-    color: aqua;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  
-  
-  
+}
+
+.fav-div button{
+  background-color: #3C5A9C;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.fav-div h1 {
+  color: blue;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.fav-div h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.fav-div h3 {
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.fav-div h4 {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.fav-div img {
+  width: 200px; /* Set the desired width */
+  height: auto; /* Automatically adjust the height while maintaining aspect ratio */
+  margin-top: 10px;
+}
+
+.fav-div p {
+  margin-top: 5px;
+}
+
+.fav-div a {
+  color: white;
+}
+
+.fav-div ul {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fav-div li {
+  animation: fadeOut 0.3s ease;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #7e70af7c;
+}

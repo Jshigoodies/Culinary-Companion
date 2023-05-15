@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import '../recipe.css';
 import { useLocation } from 'react-router-dom';
 import '../search.css';
-
+import { CREATE_RECIPE } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
 
 function Recipe() {
+  const [isButtonVisible, setIsButtonVisible] = useState(true);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [recipe, setRecipe] = useState(null);
@@ -12,6 +15,7 @@ function Recipe() {
   const API_KEY = '4a61076911b94711a2a8d40b91cb7bb4';
   const API_BASE_URL = 'https://api.spoonacular.com/recipes';
 
+  const [createRecipe, {error, data}] = useMutation(CREATE_RECIPE);
 
   const location = useLocation();
 
@@ -54,7 +58,39 @@ function Recipe() {
   }
 
   async function handleAddToFavorites() {
+    setIsButtonVisible(false);
+    //i will add this stuff too
+    let title = recipe.title;
+    let image = recipe.image;
+    let sourceUrl = 'https://spoonacular.com/food-api';
+    let ingredients = [];
+    await recipe.extendedIngredients.map((ingredient) => {
+      ingredients.push(ingredient.original);
+    });
 
+    // console.log("title: " + title);
+    // console.log("image url: " + image);
+    // console.log("sourceURl: " + sourceUrl);
+    // console.log(ingredients);
+
+    const email = localStorage.getItem('email');
+    console.log("email ehre: " + email);
+    try {
+        const {data} =  createRecipe({
+            variables: {
+                title,
+                image,
+                servings: 0,
+                sourceUrl,
+                ingredients,
+                email,
+            },
+        })
+            }
+    catch (e)
+    {
+        console.log(e);
+    }
   }
 
   return (

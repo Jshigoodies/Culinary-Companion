@@ -7,6 +7,7 @@ type User {
     email: String
     password: String
     username: String
+    recipes: [Recipe!]!
   }
 
   type Recipe {
@@ -44,6 +45,7 @@ type User {
       servings: Int!
       sourceUrl: String!
       ingredients: [String!]!
+      email: String!
     ): Recipe!
 
     updateRecipe(

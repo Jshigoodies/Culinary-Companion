@@ -1,10 +1,11 @@
 import React, { useState, useEffect} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, /*useNavigate*/ } from 'react-router-dom';
 import '../login.css';
 import { useLocation } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
+import { LOGIN_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
@@ -13,6 +14,7 @@ function Signup() {
     const isLoggedIn = Auth.loggedIn();
 
     const [addUser, {error, data}] = useMutation(ADD_USER);
+    const [login, {errors, datas}] = useMutation(LOGIN_USER);
     const location = useLocation();
 
     useEffect(() => {
@@ -32,25 +34,34 @@ function Signup() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        localStorage.setItem('email', email);
         // goes to search page after signing in
-        navigate('/search');
-        console.log(email);
-        console.log(password);
-        console.log("User login info ^^^");
-
+        // navigate('/search');
+        // console.log(email);
+        // console.log(password);
+        // console.log("User login info ^^^");
         try {
-            const {data} = await addUser({
+            const username = email;
+            await addUser({
                 variables: {
-                    username: email,
+                    username,
                     email,
                     password
                 },
             })
-            console.log(data);
+
+            const { data } = await login({
+                variables: { email, password, username }
+              });
+          
+              const token = data.login.token;
+              Auth.login(token);
+
+            //console.log(data);
         }
         catch (e)
         {

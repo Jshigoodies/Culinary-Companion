@@ -39,6 +39,7 @@ function Login() {
     try {
         // Set the username value to be the same as the email value
         const username = email;
+        localStorage.setItem('email', email);
     
         // Perform the login mutation
         const { data } = await login({
