@@ -117,7 +117,12 @@ function Recipe() {
         </ul>
         <h2>Instructions</h2>
         <div dangerouslySetInnerHTML={{ __html: recipe.instructions }}></div>
-        <button onClick={handleAddToFavorites} className="addToFavorites"> Add to Favorites! </button>
+
+        {isButtonVisible && (
+          <button onClick={handleAddToFavorites} className="addToFavorites">
+            Add to Favorites!
+          </button>
+        )}
       </div>
       )}
     </div>

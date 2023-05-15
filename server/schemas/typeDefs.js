@@ -57,7 +57,7 @@ type User {
       ingredients: [String!]!
     ): Recipe!
     
-    deleteRecipe(id: ID!): Recipe!
+    deleteRecipe(id: ID!, email: String!): Recipe!
 
   }
 `;
