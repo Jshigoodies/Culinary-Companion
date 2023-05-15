@@ -1,24 +1,40 @@
-import logo from './logo.svg';
+import NavBar from './components/Navbar';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/home';
+import SearchPage from './pages/search';
+import SignUpPage from './pages/signup';
+import LoginPage from './pages/login';
+import CreateRecipe from './pages/createRecipe';
+import FavoritesPage from './pages/favorites';
+
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+
+
+
+const client = new ApolloClient({
+  uri: 'https://culinary-companion.herokuapp.com/graphql',  //change this if you want to use localhost
+  cache: new InMemoryCache()
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/search' element={<SearchPage />} />
+        <Route path='/signup' element={<SignUpPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/favorites' element={<FavoritesPage />} />
+
+
+        <Route path='/create' element={<CreateRecipe />} />
+      </Routes>
+    </BrowserRouter>
+    </ApolloProvider>
+    
   );
 }
 

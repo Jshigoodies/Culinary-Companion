@@ -1,0 +1,151 @@
+.Recipe {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #3c4f6c;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.Recipe h1 {
+  font-size: px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  font-family: Arial, sans-serif;
+  letter-spacing: 1px;
+  }
+
+.Recipe input[type="text"] {
+  font-size: 16px;
+  padding: 10px 16px;
+  border: 1px solid #dfe4e8;
+  border-radius: 8px;
+  width: 100%;
+  margin-bottom: 20px;
+  color: #3c4f6c;
+}
+
+.Recipe button {
+  font-size: 20px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4d81e2;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.Recipe button:hover {
+  background-color: #2e59d9;
+}
+
+.Recipe ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.Recipe li {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.Recipe img {
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.Recipe p {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.Recipe h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1f2d3d;
+}
+
+.Recipe h3 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1f2d3d;
+}
+
+.Recipe ul.ingredients {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.Recipe ul.instructions {
+  list-style: decimal;
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.recipe-box {
+  background-color: #4d81e2;
+  color: white;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 255, 0.314);
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.recipe-box h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.recipe-box img {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.recipe-box p {
+  margin-bottom: 10px;
+}
+
+.recipe-box h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.recipe-box ul {
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.recipe-box li {
+  margin-bottom: 5px;
+}
+
+.Recipe button.addToFavorites {
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffcd3c;
+  color: #1f2d3d;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+  
+.Recipe button.addToFavorites:hover {
+  background-color: #f4c311;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .App {
+    padding: 30px;
+  }
+}

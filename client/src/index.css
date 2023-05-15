@@ -5,9 +5,54 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  overflow: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 20px;
+  z-index: 2000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: #132142;
+  padding: 0 20px;
+}
+
+.navRight {
+  margin-right: 50px;
+}
+
+.navRight button {
+  border: 7px bold black;
+  background-color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 10px 40px;
+  margin: 5px;
+}
+
+.navRight button:hover {
+  background-color: lightblue;
+}
+
+.home-container {
+  margin-top: 15px;
+  height: 100vh; /* Set the height to fill the viewport */
+  overflow-y: auto; /* Enable vertical scrolling if necessary */
+}
+
+.content {
+  padding: 20px; /* Add padding to create space between the content and the container */
+  color: red;
 }
