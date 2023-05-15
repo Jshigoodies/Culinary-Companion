@@ -25,6 +25,7 @@ function Favorites() {
   }, [location]);
 
   const username = localStorage.getItem('email'); // Get the username from localStorage
+  const email = localStorage.getItem('email');
 
   // Use the useQuery hook to fetch the user data
   const { loading, error, data, refetch } = useQuery(GET_USER, {
@@ -48,7 +49,7 @@ function Favorites() {
 
   const handleDeleteRecipe = (recipeId) => {
     deleteRecipe({
-      variables: { deleteRecipeId: recipeId },
+      variables: { deleteRecipeId: recipeId, email: email },
     })
       .then(() => {
         console.log('Recipe deleted successfully');

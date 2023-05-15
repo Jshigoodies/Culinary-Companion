@@ -38,8 +38,8 @@ mutation Mutation($title: String!, $image: String!, $servings: Int!, $sourceUrl:
 `;
 
 export const DELETE_RECIPE = gql`
-mutation Mutation($deleteRecipeId: ID!) {
-  deleteRecipe(id: $deleteRecipeId) {
+mutation Mutation($deleteRecipeId: ID!, $email: String!) {
+  deleteRecipe(id: $deleteRecipeId, email: $email) {
     id
     ingredients
     image

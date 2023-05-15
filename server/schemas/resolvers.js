@@ -94,9 +94,14 @@ const resolvers = {
       }
     },
 
-    deleteRecipe: async (parent, { id }) => {
+    deleteRecipe: async (parent, { id, email }) => {
       try {
         const recipe = await Recipe.findByIdAndDelete(id);
+        const user = await User.findOneAndUpdate(
+          { email },
+          { $pull: { recipes: id } },
+          { new: true }
+        );
         return recipe;
       } catch (error) {
         throw new Error('Failed to delete recipe');
