@@ -105,22 +105,20 @@ function Recipe() {
         ))}
       </ul>
       {recipe && (
-        <div>
-          <h2>{recipe.title}</h2>
-          <img src={recipe.image} alt={recipe.title} />
-          <p>{removeHtmlTags(recipe.summary)}</p>
-          <h3>Ingredients</h3>
-          <ul>
-            {recipe.extendedIngredients.map((ingredient) => (
-              <li key={ingredient.id}>{ingredient.original}</li>
-            ))}
-          </ul>
-          <h3>Instructions</h3>
-          <div dangerouslySetInnerHTML={{ __html: recipe.instructions }}></div>
-          {isButtonVisible && (
-            <button onClick={handleAddToFavorites}>Add to Favorites!</button>
-          )}
-        </div>
+        <div className="recipe-box">
+        <h2>{recipe.title}</h2>
+        <img src={recipe.image} alt={recipe.title} />
+        <p>{removeHtmlTags(recipe.summary)}</p>
+        <h2>Ingredients</h2>
+        <ul>
+          {recipe.extendedIngredients.map((ingredient) => (
+            <li key={ingredient.id}>{ingredient.original}</li>
+          ))}
+        </ul>
+        <h2>Instructions</h2>
+        <div dangerouslySetInnerHTML={{ __html: recipe.instructions }}></div>
+        <button onClick={handleAddToFavorites} className="addToFavorites"> Add to Favorites! </button>
+      </div>
       )}
     </div>
   );
